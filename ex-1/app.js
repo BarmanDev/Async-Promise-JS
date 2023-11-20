@@ -1,8 +1,6 @@
 function consoleFerch() {
 
-// Usamos la función fetch para coger el archivo list.json
 fetch('list.json')
-// Cuando la promesa se resuelve resplse.json convierta la respuesta en un objeto JSON
     .then(response => response.json())
     //Cuando se resuleve la promesa de arriba se ejecuta la siguiente función .then y recorre el objeto JSON eon un for each
     .then(data => {
@@ -11,14 +9,11 @@ fetch('list.json')
         });
     })
 
-//Capturamos cualquier error
     .catch(error => console.error('Algo fue mal :(', error));
 
 }
 
 consoleFerch();
-
-
 
 function buttonTitles() {
     fetch('list.json')
