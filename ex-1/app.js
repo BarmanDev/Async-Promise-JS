@@ -1,46 +1,41 @@
-let data = {
-    "results": [
-        {
-            "title": "Estudiar Js",
-            "priority": "alta",
-            "isDone": false
-        },
-        {
-            "title": "Estudiar CSS",
-            "priority": "alta",
-            "isDone": true
-        },
-        {
-            "title": "Estudiar OOP",
-            "priority": "media",
-            "isDone": false
-        },
-        {
-            "title": "Estudiar IA",
-            "priority": "baja",
-            "isDone": false
-        }
-    ]
-};
+// app.js
+import fs from 'fs/promises';
 
-
-function dataConsole(){
-data.results.forEach(function(item) {
-    console.log(item.title);
-});
-
+async function getData() {
+    try {
+        const jsonData = await fs.readFile('list.json', 'utf-8');
+        return JSON.parse(jsonData);
+    } catch (error) {
+        console.error('Error al leer el archivo:', error.message);
+        throw error;
+    }
 }
 
-function buttonTitles() {
-    let titleList = document.getElementById('title-list');
-    titleList.innerHTML = '';
-    data.results.forEach(function(item) {
-        let listItem = document.createElement('h2'); 
-        listItem.textContent = item.title; 
-        titleList.appendChild(listItem); 
-    });
+async function dataConsole() {
+    try {
+        const result = await getData();
+        result.results.forEach((item) => {
+            console.log(item.title);
+        });
+    } catch (error) {
+        // Manejar errores si es necesario
+    }
 }
 
-
+async function buttonTitles() {
+    try {
+        const result = await getData();
+        let titleList = document.getElementById('title-list');
+        titleList.innerHTML = '';
+        result.results.forEach((item) => {
+            let listItem = document.createElement('h2');
+            listItem.textContent = item.title;
+            titleList.appendChild(listItem);
+        });
+    } catch (error) {
+        // Manejar errores si es necesario
+    }
+}
 
 dataConsole();
+buttonTitles();
