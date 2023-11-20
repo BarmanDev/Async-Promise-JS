@@ -1,46 +1,37 @@
-let data = {
-    "results": [
-        {
-            "title": "Estudiar Js",
-            "priority": "alta",
-            "isDone": false
-        },
-        {
-            "title": "Estudiar CSS",
-            "priority": "alta",
-            "isDone": true
-        },
-        {
-            "title": "Estudiar OOP",
-            "priority": "media",
-            "isDone": false
-        },
-        {
-            "title": "Estudiar IA",
-            "priority": "baja",
-            "isDone": false
-        }
-    ]
-};
+function consoleFerch() {
 
+// Usamos la función fetch para coger el archivo list.json
+fetch('list.json')
+// Cuando la promesa se resuelve resplse.json convierta la respuesta en un objeto JSON
+    .then(response => response.json())
+    //Cuando se resuleve la promesa de arriba se ejecuta la siguiente función .then y recorre el objeto JSON eon un for each
+    .then(data => {
+        data.results.forEach(item => {
+            console.log(item.title);
+        });
+    })
 
-function dataConsole(){
-data.results.forEach(function(item) {
-    console.log(item.title);
-});
+//Capturamos cualquier error
+    .catch(error => console.error('Algo fue mal :(', error));
 
 }
+
+consoleFerch();
+
+
 
 function buttonTitles() {
-    let titleList = document.getElementById('title-list');
-    titleList.innerHTML = '';
-    data.results.forEach(function(item) {
-        let listItem = document.createElement('h2'); 
-        listItem.textContent = item.title; 
-        titleList.appendChild(listItem); 
-    });
-}
+    fetch('list.json')
+        .then(response => response.json())
+        .then(data => {
+            let titleList = document.getElementById('title-list');
+            data.results.forEach(item => {
+                let p = document.createElement('p');
+                p.textContent = item.title;
+                titleList.appendChild(p);
+            });
+        })
+        .catch(error => console.error('Algo fue mal nooo :/', error));
+    }
 
-
-
-dataConsole();
+    

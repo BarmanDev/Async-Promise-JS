@@ -1,0 +1,57 @@
+:root{
+
+    --primary-color: #F2BC94;
+    --second-color: #722620;
+    --font-color: #30110D;
+    --white: #ffffff;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-color);
+}
+
+h1 {
+    color: var(--second-color)
+}
+
+.todos-table {
+    display: flex;
+    justify-content: center;
+    border-collapse: collapse;
+    width: 20%;
+}
+
+.todos-table th, .todos-table td {
+    border: 2px solid #30110D;
+    padding: 8px;
+    padding: 1rem;
+    color: var(--white);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+
+
+.todos-table th {
+    background-color: var(--second-color);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.title-list tr:nth-child(even) {
+    background-color: var(--second-color);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
